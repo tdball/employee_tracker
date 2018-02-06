@@ -1,4 +1,12 @@
+@import 'variables';
+@import 'layout';
+
 .map {
-  height: 10rem;
-  width: 10rem;
+  border-radius: 0.5rem;
+  height: 40%;
+  width: 50%;
+}
+
+html {
+  background: whitesmoke;
 }

@@ -1,4 +1,8 @@
 html, body {
   height: 100%; }
 
+body {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; }
+
 /*# sourceMappingURL=layout.css.map */

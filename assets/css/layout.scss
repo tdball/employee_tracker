@@ -1,12 +1,18 @@
-html, body{
-  height: 100%;
+html{
+  height: 100vh;
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
-
 main {
-
+  padding: 2rem 5rem;
+  width: 100%;
 }
 

@@ -1,5 +1,24 @@
+html {
+  height: 100vh; }
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0; }
+
+main {
+  padding: 2rem 5rem;
+  width: 100%; }
+
 .map {
-  height: 10rem;
-  width: 10rem; }
+  border-radius: 0.5rem;
+  height: 40%;
+  width: 50%; }
+
+html {
+  background: whitesmoke; }
 
 /*# sourceMappingURL=theme.css.map */

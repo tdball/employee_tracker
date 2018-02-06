@@ -14,15 +14,15 @@
     </script>
 </head>
 <body>
-    <main class="container">
-        <div class="map" id="gmap"></div>
-        <div class="map" id="omap"></div>
-    </main>
+    <div class="map" id="gmap"></div>
+    <div class="map" id="omap"></div>
     <script type='test/javascript' src="assets/js/data.js"></script>
+    <script type='test/javascript' src="assets/js/mapSwitch.js"></script>
 <script>
     // Verify page content has loaded.
     // TODO: Determine solution to google being undefined occasionally, loading script in head, may be resolution to issue
     document.addEventListener("DOMContentLoaded", function(event) {
+        let googleMapActive = true
         let gmap = new google.maps.Map(document.getElementById('gmap'), {
             center: {lat: -34.397, lng: 150.644},
             zoom: 8
