@@ -1,0 +1,22 @@
+[
+    {"name": "Location One", "latitude": 36.099754, "longitude": -95.843868, "logo": ""},
+    {"name": "Location Two", "latitude": 37.84994956, "longitude": -95.25893199, "logo": "images/kalibrate-logo.png"},
+    {"name": "Location Three", "latitude": 34.78898788, "longitude": 97.08947292, "logo": ""},
+    {"name": "Location Four", "latitude": 35.96542131, "longitude": 94.41193281, "logo": ""},
+    {"name": "Location Five", "latitude": 37.47331028, "longitude": 96.82995879, "logo": ""},
+    {"name": "Location Six", "latitude": 35.14056237, "longitude": 92.59717248, "logo": "images/kalibrate-logo.png"},
+    {"name": "Location Seven", "latitude": 34.02002678, "longitude": 94.07564229, "logo": ""},
+    {"name": "Location Eight", "latitude": 35.38392935, "longitude": 92.67192481, "logo": ""},
+    {"name": "Location Nine", "latitude": 97.64949469, "longitude": 37.1179533, "logo": ""},
+    {"name": "Location Ten", "latitude": 0, "longitude": 95.86310703, "logo": "images/kalibrate-logo.png"},
+    {"name": "Location Eleven", "latitude": 37.1179533, "longitude": 97.64949469, "logo": ""},
+    {"name": "Location Twelve", "latitude": 36.82867891, "longitude": 98.34480292, "logo": ""},
+    {"name": "Location Thirteen", "latitude": 36.83560726, "longitude": 98.29911911, "logo": ""},
+    {"name": "Location Fourteen", "latitude": 34.2016209, "longitude": 94.47300475, "logo": "images/kalibrate-logo.png"},
+    {"name": "Location Fifteen", "latitude": 0, "longitude": 0, "logo": ""},
+    {"name": "Location Sixteen", "latitude": 37.51163247, "longitude": 98.67866294, "logo": ""},
+    {"name": "Location Seventeen", "latitude": 36.84091723, "longitude": 94.69454825, "logo": ""},
+    {"name": "Location Eighteen", "latitude": 37.71796467, "longitude": 93.43766389, "logo": ""},
+    {"name": "Location Nineteen", "latitude": null, "longitude": null, "logo": ""},
+    {"name": "Location Twenty", "latitude": 37.05234669, "longitude": 93.75578802, "logo": "images/kalibrate-logo.png"}
+]

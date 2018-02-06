@@ -1,0 +1,13 @@
+{
+  "name": "employee_tracker",
+  "version": "1.0.0",
+  "description": "Employee Location Dashboard",
+  "main": "index.js",
+  "repository": "https://github.com/tdball/employee_tracker.git",
+  "author": "Trevor Ball",
+  "license": "MIT",
+  "dependencies": {
+    "googlemaps": "^1.12.0",
+    "leaflet": "^1.3.1"
+  }
+}
