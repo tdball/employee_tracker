@@ -12,17 +12,23 @@
             crossorigin=""></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBotE4PbLbkOzdfAdfQVcV3ih-c_CHlS9I">
     </script>
-</head>
-<body>
-<button class="map-switcher" type="button" id="googleMapActive" onclick="mapSwitch.toggleMaps()">Toggle Maps</button>
-    <div class="map" id="gmap"></div>
-    <div class="map" style='display:none;' id="omap"></div>
     <script type='text/javascript' src="assets/js/data.js"></script>
     <script type='text/javascript' src="assets/js/mapSwitch.js"></script>
+</head>
+<body>
+    <div class="map-container">
+        <div class="map-header">
+            <button class="map-switcher" type="button" id="googleMapActive" onclick="mapSwitch.toggleMaps()">Toggle Maps</button>
+        </div>
+        <div class="map-area">
+            <div class="map" id="gmap"></div>
+            <div class="map" style='display:none;' id="omap"></div>
+        </div>
+    </div>
+
 <script>
     let mapSwitch = new MapSwitch()
     // Verify page content has loaded.
-    // TODO: Determine solution to google being undefined occasionally, loading script in head, may be resolution to issue
     document.addEventListener("DOMContentLoaded", function(event) {
         let gmap = new google.maps.Map(document.getElementById('gmap'), {
             center: {lat: -34.397, lng: 150.644},
