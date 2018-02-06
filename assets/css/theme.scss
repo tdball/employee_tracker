@@ -3,8 +3,8 @@
 
 .map {
   border-radius: 0.5rem;
-  height: 40%;
-  width: 50%;
+  height: 60%;
+  width: 60%;
 }
 
 .map-switcher {
@@ -15,6 +15,10 @@
   color: whitesmoke;
   margin: 1rem 0;
   padding: 0.1rem 0.33rem;
+}
+
+.map-switcher:hover {
+  background: slategray;
 }
 
 html {

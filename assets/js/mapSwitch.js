@@ -13,7 +13,6 @@ class MapSwitch {
         Retrieves the active state of the MapSwitch object and swaps between either
         leaflet or googlemaps as a provider for the Map
          */
-        console.log(this.googleMapActive)
         this.googleMapActive = !this.googleMapActive
         let openMap = document.getElementById('omap')
         let googleMap = document.getElementById('gmap')
