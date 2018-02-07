@@ -41,16 +41,26 @@
             center: {lat: userData[0].latitude, lng: userData[0].longitude},
             zoom: 8
         })
+        let omap = L.map('omap').setView([userData[0].latitude, userData[0].longitude], 8)
 
-        let omap = L.map('omap').setView([51.505, -0.09], 13)
         // lets plot the userData across both maps
         for(let entry of userData) {
-            if(validateCoordinates(entry)) {}
-            let gMarker = new google.maps.Marker({
-                position: {lat: entry.latitude, lng: entry.longitude},
-                map: gmap
-            })
-            // TODO: Add markers to open map.
+            if(validateCoordinates(entry)) {
+                let gMarker = new google.maps.Marker({
+                    position: {lat: entry.latitude, lng: entry.longitude},
+                    map: gmap,
+                    icon: entry.logo,
+                })
+                let popup = new google.maps.InfoWindow({
+                    content: entry.name
+                })
+                gMarker.addListener('click', function() {
+                    console.log(`You've clicked ${entry.name}`)
+                    popup.open(gmap, gMarker)
+                })
+
+                // TODO: Add markers to open map.
+            }
         }
     });
 </script>
