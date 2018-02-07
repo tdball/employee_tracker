@@ -16,16 +16,22 @@
     <script type='text/javascript' src="assets/js/mapSwitch.js"></script>
 </head>
 <body>
-    <div class="map-container">
-        <div class="map-header">
-            <button class="map-switcher" type="button" id="googleMapActive" onclick="mapSwitch.toggleMaps()">Toggle Maps</button>
+    <header class="banner">
+        <div class="banner-logo">
+            <h1>Logo</h1>
         </div>
-        <div class="map-area">
-            <div class="map" id="gmap"></div>
-            <div class="map" style='display:none;' id="omap"></div>
+    </header>
+    <div class="container">
+        <div class="map-grid">
+            <div class="map-header">
+                <button class="map-switcher" type="button" id="mapToggle" onclick="mapSwitch.toggleMaps()">Switch To Leaflet</button>
+            </div>
+            <div class="map-area">
+                <div class="map" id="gmap"></div>
+                <div class="map" style='display:none;' id="omap"></div>
+            </div>
         </div>
     </div>
-
 <script>
     let mapSwitch = new MapSwitch()
     // Verify page content has loaded.

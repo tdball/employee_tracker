@@ -6,6 +6,7 @@ class MapSwitch {
 
     constructor() {
         this.googleMapActive = true
+        this.toggleButton = document.getElementById('mapToggle')
     }
 
     toggleMaps() {
@@ -18,10 +19,12 @@ class MapSwitch {
         let googleMap = document.getElementById('gmap')
         if(this.googleMapActive) {
             this.provider = 'google'
+            this.toggleButton.innerText = 'Switch To Leaflet'
             openMap.style.display = 'none'
             googleMap.style.display = 'block'
         } else {
             this.provider = 'leaflet'
+            this.toggleButton.innerText = 'Switch To Google'
             openMap.style.display = 'block'
             googleMap.style.display = 'none'
         }
