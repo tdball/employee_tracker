@@ -26,26 +26,15 @@
   }
 }
 
+.map-toggle:hover {
+  background: rgba(235, 235, 235, 1);
+}
+
+//TODO: Flesh out selection slider
 .map-toggle-google {
 
 }
 .map-toggle-osm {
 
 }
-
-.map-toggle:hover {
-  background: rgba(235, 235, 235, 1);
-}
-
-html {
-  background: whitesmoke;
-}
-
-.banner {
-  background: darkslategray;
-  box-shadow: 1px 1px 1px 1px rgba(10, 10, 10, 0.5);
-}
-.banner-logo {
-  color: whitesmoke;
-  font-family: 'Source Code Pro', arial, sans-serif;
-}
+//

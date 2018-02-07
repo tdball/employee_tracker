@@ -5,13 +5,6 @@ body {
   height: 100vh;
   margin: 0; }
 
-.container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center; }
-
 .map-controls {
   position: fixed;
   z-index: 1001;
@@ -67,16 +60,5 @@ body {
 
 .map-toggle:hover {
   background: #ebebeb; }
-
-html {
-  background: whitesmoke; }
-
-.banner {
-  background: darkslategray;
-  box-shadow: 1px 1px 1px 1px rgba(10, 10, 10, 0.5); }
-
-.banner-logo {
-  color: whitesmoke;
-  font-family: 'Source Code Pro', arial, sans-serif; }
 
 /*# sourceMappingURL=theme.css.map */
