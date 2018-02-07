@@ -5,7 +5,7 @@ body {
   height: 100vh;
   margin: 0;
   display: grid;
-  grid-template-rows: 1fr 10fr; }
+  grid-template-rows: 0.5fr 10fr; }
 
 .container {
   width: 100%;
@@ -28,6 +28,8 @@ body {
   width: 80%;
   display: flex;
   justify-content: left; }
+  .banner-logo h1 {
+    margin: 0.75rem 0; }
 
 .map-grid {
   grid-column: 1/2;
@@ -56,13 +58,13 @@ body {
   font-size: 1.5rem;
   border: 0;
   border-radius: 0.25rem;
-  background: darkslategray;
+  background: rgba(40, 40, 100, 0.9);
   color: whitesmoke;
   margin: 1rem 0;
   padding: 0.1rem 0.33rem; }
 
 .map-switcher:hover {
-  background: slategray; }
+  background: rgba(40, 40, 100, 0.75); }
 
 html {
   background: whitesmoke; }
@@ -73,6 +75,6 @@ html {
 
 .banner-logo {
   color: whitesmoke;
-  font-family: 'Source Code Pro', arial; }
+  font-family: 'Source Code Pro', arial, sans-serif; }
 
 /*# sourceMappingURL=theme.css.map */

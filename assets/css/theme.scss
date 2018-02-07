@@ -11,14 +11,14 @@
   font-size: 1.5rem;
   border: 0;
   border-radius: 0.25rem;
-  background: darkslategray;
+  background: rgba(40, 40, 100, 0.90);
   color: whitesmoke;
   margin: 1rem 0;
   padding: 0.1rem 0.33rem;
 }
 
 .map-switcher:hover {
-  background: slategray;
+  background: rgba(40, 40, 100, 0.75);
 }
 
 html {
@@ -31,5 +31,5 @@ html {
 }
 .banner-logo {
   color: whitesmoke;
-  font-family: 'Source Code Pro', arial;
+  font-family: 'Source Code Pro', arial, sans-serif;
 }
