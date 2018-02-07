@@ -29,8 +29,8 @@ function initLeaflet(id) {
 }
 
 function attachMapData(id, map) {
-    // Binds the map to it's element stored under mapObject, allows for access outside lexical scope
-
+    // Binds the map to it's element stored under mapObject,
+    // allows for access outside lexical scope
     document.getElementById(id).mapObject = map
 }
 
@@ -49,13 +49,17 @@ function populateGoogle(userData, map) {
 }
 
 function populateLeaflet(userData, map) {
-    let icon = L.icon({
-        iconUrl: userData.logo,
-        iconSize: [38, 95],
-        iconAnchor: [22, 94],
-        popupAnchor: [-3, -76],
-    });
-    let marker = L.marker([userData.latitude, userData.longitude], {icon: icon}).addTo(map)
+    let marker = L.marker([userData.latitude, userData.longitude])
+    if(userData.logo) {
+        marker.options.icon = L.icon({
+            iconUrl: userData.logo,
+            iconSize: [32, 32],
+            iconAnchor: [0, 0],
+            popupAnchor: [-3, -76],
+        })
+    }
+    console.log(marker)
     let popup = marker.bindPopup(userData.name)
     marker.on('click', () => (popup.openPopup()))
+    marker.addTo(map)
 }

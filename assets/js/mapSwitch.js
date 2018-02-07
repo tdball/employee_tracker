@@ -7,17 +7,22 @@ class MapSwitch {
     constructor() {
         this.googleMapActive = true
         this.toggleButton = document.getElementById('mapToggle')
-        this.mapList = []
         this.mapResize = new CustomEvent("mapResize")
         document.addEventListener("mapResize", this.resizeMaps)
     }
 
     resizeMaps() {
-        // Hacky solution, due to display:none being the default for the leaflet map on load
-        // this timeout of 1ms will let the browser swap the display to block and then the
-        // size of the map will be adjusted to take up the needed space.
+        /*
+         Hacky solution, due to display:none being the default for the leaflet map on load
+         this timeout of 1ms will let the browser swap the display to block and then the
+         size of the map will be adjusted to take up the needed space.
+
+         Alternatives, render both maps fullscreen and swap their z-indexes, however I believe
+         the performance benefit to only having the canvas render one map at a time would make
+         up for this workaround.
+          */
         setTimeout(function() {
-            document.getElementById('omap').leaflet.invalidateSize()
+            document.getElementById('omap').mapObject.invalidateSize()
         }, 1)
     }
 

@@ -16,7 +16,7 @@
     <script type='text/javascript' src="assets/js/data.js"></script>
     <script type='text/javascript' src="assets/js/mapSwitch.js"></script>
     <script type='text/javascript' src="assets/js/mapDataValidation.js"></script>
-    <script type='text/javascript' src="assets/js/plotUserData.js"></script>
+    <script type='text/javascript' src="assets/js/populateUserData.js"></script>
 </head>
 <body>
     <div class="fullscreen">
@@ -31,25 +31,18 @@
 <script>
     let mapSwitch = new MapSwitch()
     // Verify page content has loaded.
-    // document.addEventListener("DOMContentLoaded", function(event) {
+    document.addEventListener("DOMContentLoaded", function() {
         let gmap = initGoogle('gmap')
         let omap = initLeaflet('omap')
 
-        // Binding the leaflet object to a property on the omap element. For access outside this scope.
-        // Needed for map resizing currently. Alternate solution may be to use z-levels to handle the issue
-        // with default sizings of the leaflet generated map. Google doesn't exhibit this issue currently.
-        document.getElementById('omap').mapObject = omap
-
-
-
-        // lets plot the userData across both maps
+        // lets populate the userData across both maps
         for(let entry of userData) {
             if(validateCoordinates(entry)) {
-                plotGoogle(entry, gmap)
-                plotLeaflet(entry, omap)
+                populateGoogle(entry, gmap)
+                populateLeaflet(entry, omap)
             }
         }
-    // });
+    });
 </script>
 </body>
 </html>
