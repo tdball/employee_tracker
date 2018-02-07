@@ -34,12 +34,12 @@ class MapSwitch {
 
         if(this.googleMapActive) {
             this.provider = 'google'
-            this.toggleButton.innerText = 'Switch To OpenStreetMaps'
+            this.toggleButton.innerText = 'OpenStreet Maps'
             openMap.style.display = 'none'
             googleMap.style.display = 'block'
         } else {
             this.provider = 'leaflet'
-            this.toggleButton.innerText = 'Switch To Google Maps'
+            this.toggleButton.innerText = 'Google Maps'
             openMap.style.display = 'block'
             googleMap.style.display = 'none'
         }
