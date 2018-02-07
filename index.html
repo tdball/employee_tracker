@@ -16,6 +16,7 @@
     <script type='text/javascript' src="assets/js/data.js"></script>
     <script type='text/javascript' src="assets/js/mapSwitch.js"></script>
     <script type='text/javascript' src="assets/js/mapDataValidation.js"></script>
+    <script type='text/javascript' src="assets/js/plotUserData.js"></script>
 </head>
 <body>
     <div class="fullscreen">
@@ -29,56 +30,23 @@
     </div>
 <script>
     let mapSwitch = new MapSwitch()
-    let defaultZoom = 10
     // Verify page content has loaded.
     // document.addEventListener("DOMContentLoaded", function(event) {
-        let gmap = new google.maps.Map(document.getElementById('gmap'), {
-            center: {lat: userData[0].latitude, lng: userData[0].longitude},
-            zoom: defaultZoom
-        })
-        let omap = L.map('omap', {
-            center: [userData[0].latitude, userData[0].longitude],
-            zoom: defaultZoom
-        })
+        let gmap = initGoogle('gmap')
+        let omap = initLeaflet('omap')
 
         // Binding the leaflet object to a property on the omap element. For access outside this scope.
         // Needed for map resizing currently. Alternate solution may be to use z-levels to handle the issue
         // with default sizings of the leaflet generated map. Google doesn't exhibit this issue currently.
-        document.getElementById('omap').leaflet = omap
+        document.getElementById('omap').mapObject = omap
 
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-        maxZoom: 8,
-        id: 'mapbox.streets',
-        accessToken: 'pk.eyJ1IjoidGRiYWxsIiwiYSI6ImNqZGQ2ZXN3cTBveTAzM3M0Y2hjNGdicWYifQ.8ZyvzI_lpo_YINCzf0KKrg'
-        }).addTo(omap);
 
 
         // lets plot the userData across both maps
         for(let entry of userData) {
             if(validateCoordinates(entry)) {
-
-                let gMarker = new google.maps.Marker({
-                    position: {lat: entry.latitude, lng: entry.longitude},
-                    map: gmap,
-                    icon: entry.logo,
-                })
-                let popup = new google.maps.InfoWindow({
-                    content: entry.name
-                })
-                gMarker.addListener('click', function() {
-                    popup.open(gmap, gMarker)
-                })
-
-                let oMarker = L.marker([entry.latitude, entry.longitude]).addTo(omap)
-
-                let oPopup = oMarker.bindPopup(entry.name)
-
-
-                oMarker.on('click', function() {
-                    oPopup.openPopup()
-                })
-
+                plotGoogle(entry, gmap)
+                plotLeaflet(entry, omap)
             }
         }
     // });
