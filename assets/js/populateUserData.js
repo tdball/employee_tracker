@@ -58,7 +58,6 @@ function populateLeaflet(userData, map) {
             popupAnchor: [-3, -76],
         })
     }
-    console.log(marker)
     let popup = marker.bindPopup(userData.name)
     marker.on('click', () => (popup.openPopup()))
     marker.addTo(map)

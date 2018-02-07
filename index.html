@@ -37,7 +37,7 @@
 
         // lets populate the userData across both maps
         for(let entry of userData) {
-            if(validateCoordinates(entry)) {
+            if(validCoordinate(entry)) {
                 populateGoogle(entry, gmap)
                 populateLeaflet(entry, omap)
             }
