@@ -26,14 +26,14 @@ body {
   pointer-events: none;
 }
 .map-toggle {
-  grid-row: 29/31;
+  grid-row: 27/30;
   grid-column: 2/10;
   @include tablet {
-    grid-row: 29/31;
+    grid-row: 28/29;
     grid-column: 1/6;
   }
   @include desktop {
-    grid-row: 29/31;
+    grid-row: 28/29;
     grid-column: 1/4;
   }
   pointer-events: all;
