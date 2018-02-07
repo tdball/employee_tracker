@@ -36,16 +36,33 @@
 <script>
     let mapSwitch = new MapSwitch()
     // Verify page content has loaded.
-    document.addEventListener("DOMContentLoaded", function(event) {
+    // document.addEventListener("DOMContentLoaded", function(event) {
         let gmap = new google.maps.Map(document.getElementById('gmap'), {
             center: {lat: userData[0].latitude, lng: userData[0].longitude},
             zoom: 8
         })
-        let omap = L.map('omap').setView([userData[0].latitude, userData[0].longitude], 8)
+        let omap = L.map('omap', {
+            center: [userData[0].latitude, userData[0].longitude],
+            zoom: 8
+        })
+
+        // Binding the leaflet object to a property on the omap element. For access outside this scope.
+        // Needed for map resizing currently. Alternate solution may be to use z-levels to handle the issue
+        // with default sizings of the leaflet generated map. Google doesn't exhibit this issue currently.
+        document.getElementById('omap').leaflet = omap
+
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+        maxZoom: 8,
+        id: 'mapbox.streets',
+        accessToken: 'pk.eyJ1IjoidGRiYWxsIiwiYSI6ImNqZGQ2ZXN3cTBveTAzM3M0Y2hjNGdicWYifQ.8ZyvzI_lpo_YINCzf0KKrg'
+        }).addTo(omap);
+
 
         // lets plot the userData across both maps
         for(let entry of userData) {
             if(validateCoordinates(entry)) {
+
                 let gMarker = new google.maps.Marker({
                     position: {lat: entry.latitude, lng: entry.longitude},
                     map: gmap,
@@ -59,10 +76,12 @@
                     popup.open(gmap, gMarker)
                 })
 
+                let oMarker = L.marker([entry.latitude, entry.longitude]).addTo(omap)
+
                 // TODO: Add markers to open map.
             }
         }
-    });
+    // });
 </script>
 </body>
 </html>
