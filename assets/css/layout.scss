@@ -19,15 +19,23 @@ body {
   position: fixed;
   z-index: 1001;
   display: grid;
-  grid-template-rows: repeat(12, 1fr);
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(32, 1fr);
+  grid-template-columns: repeat(32, 1fr);
   height: 100%;
   width: 100%;
   pointer-events: none;
 }
 .map-toggle {
-  grid-row: 11/12;
-  grid-column: 2/6;
+  grid-row: 4/5;
+  grid-column: 2/8;
+  @include tablet {
+    grid-row: 4/5;
+    grid-column: 1/6;
+  }
+  @include desktop {
+    grid-row: 4/5;
+    grid-column: 1/4;
+  }
   pointer-events: all;
 }
 
