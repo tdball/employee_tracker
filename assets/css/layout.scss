@@ -27,7 +27,7 @@ body {
 }
 .map-toggle {
   grid-row: 4/5;
-  grid-column: 2/8;
+  grid-column: 2/10;
   @include tablet {
     grid-row: 4/5;
     grid-column: 1/6;

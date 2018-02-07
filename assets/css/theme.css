@@ -24,7 +24,7 @@ body {
 
 .map-toggle {
   grid-row: 4/5;
-  grid-column: 2/8;
+  grid-column: 2/10;
   pointer-events: all; }
   @media (min-width: 768px) and (max-width: 1023px) {
     .map-toggle {
