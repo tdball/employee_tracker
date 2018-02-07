@@ -14,6 +14,7 @@
     </script>
     <script type='text/javascript' src="assets/js/data.js"></script>
     <script type='text/javascript' src="assets/js/mapSwitch.js"></script>
+    <script type='text/javascript' src="assets/js/mapDataValidation.js"></script>
 </head>
 <body>
     <header class="banner">
@@ -37,10 +38,20 @@
     // Verify page content has loaded.
     document.addEventListener("DOMContentLoaded", function(event) {
         let gmap = new google.maps.Map(document.getElementById('gmap'), {
-            center: {lat: -34.397, lng: 150.644},
+            center: {lat: userData[0].latitude, lng: userData[0].longitude},
             zoom: 8
         })
+
         let omap = L.map('omap').setView([51.505, -0.09], 13)
+        // lets plot the userData across both maps
+        for(let entry of userData) {
+            if(validateCoordinates(entry)) {}
+            let gMarker = new google.maps.Marker({
+                position: {lat: entry.latitude, lng: entry.longitude},
+                map: gmap
+            })
+            // TODO: Add markers to open map.
+        }
     });
 </script>
 </body>
