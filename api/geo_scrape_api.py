@@ -26,7 +26,7 @@ def in_water(lat: float, lon: float) -> bool:
     :param lon: float
     :return: bool
     """
-    path = os.path.abspath('water-polygons/water_polygons.shp')
+    path = os.path.abspath('water_polygons.shp')
     with fiona.open(path) as fiona_collection:
         point = Point(lon, lat)
         # here we filter to only scan results near the point in question.
