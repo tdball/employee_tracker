@@ -1,4 +1,11 @@
 function validCoordinate(coordinateObject) {
+    /*
+    param: coordinateObject (Object)
+    return: bool
+
+    Takes a coordinateObject and parses it's latitude/longitude to verify they're sane results.
+    Will automatically strip invalid ranges, and all major bodies of water from the results as well.
+     */
     // Make sure we have coordinates
     if (!coordinateObject.latitude || !coordinateObject.longitude) {
         return false
