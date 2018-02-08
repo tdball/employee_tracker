@@ -14,6 +14,7 @@ function initGoogle(id) {
     }
 }
 
+
 function initLeaflet(id) {
     // Creates a Leaflet JS map using open street maps tiles
     if(userData[0]){
@@ -31,11 +32,15 @@ function initLeaflet(id) {
         return map
     }
 }
+
+
 function attachMapData(id, map) {
     // Binds the map to it's element stored under mapObject,
     // allows for access outside lexical scope
     document.getElementById(id).mapObject = map
 }
+
+
 function populateGoogle(userData, map) {
     let marker = new google.maps.Marker({
         position: {lat: userData.latitude, lng: userData.longitude},
@@ -57,6 +62,8 @@ function populateGoogle(userData, map) {
 
     })
 }
+
+
 function populateLeaflet(userData, map) {
     let marker = L.marker([userData.latitude, userData.longitude])
     if(userData.logo) {

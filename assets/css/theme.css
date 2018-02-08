@@ -28,12 +28,12 @@ body {
   @media (min-width: 768px) and (max-width: 1023px) {
     .google-search {
       width: 50%;
-      top: 0.5rem;
+      top: 0.66rem;
       left: 10rem; } }
   @media (min-width: 1024px) {
     .google-search {
       width: 35%;
-      top: 0.5rem;
+      top: 0.66rem;
       left: 10rem; } }
 
 .map-area {
@@ -58,7 +58,7 @@ body {
   padding: 0.5rem;
   height: auto;
   width: auto;
-  box-shadow: 1px 1px 2px rgba(50, 50, 50, 0.5); }
+  box-shadow: 0 1px 2px rgba(50, 50, 50, 0.25); }
   @media (min-width: 1024px) {
     .map-toggle {
       font-size: 0.75rem; } }
@@ -67,13 +67,22 @@ body {
   background: #ebebeb; }
 
 .google-search {
-  padding: 0.33rem 0.5rem;
   font-size: medium;
   font-weight: 500;
   border: none;
   border-radius: 0.1rem;
   background: white;
   color: black;
-  box-shadow: 1px 1px 2px rgba(50, 50, 50, 0.5); }
+  box-shadow: 0 1px 2px rgba(50, 50, 50, 0.25); }
+  .google-search input {
+    padding: 0.33rem 0.5rem;
+    width: 80%;
+    border: none; }
+  .google-search button {
+    color: whitesmoke;
+    background: darkslategrey;
+    margins: 0;
+    width: 20%;
+    border: none; }
 
 /*# sourceMappingURL=theme.css.map */

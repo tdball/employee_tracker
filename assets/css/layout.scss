@@ -32,12 +32,12 @@ body {
   left: 0.5rem;
   @include tablet {
     width: 50%;
-    top: 0.5rem;
+    top: 0.66rem;
     left: 10rem;
   }
   @include desktop {
     width: 35%;
-    top: 0.5rem;
+    top: 0.66rem;
     left: 10rem;
   }
 }

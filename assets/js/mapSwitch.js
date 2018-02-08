@@ -34,8 +34,8 @@ class MapSwitch {
         document.dispatchEvent(this.mapResize)
         this.googleMapActive = !this.googleMapActive
 
-        let openMap = document.getElementById('omap')
-        let googleMap = document.getElementById('gmap')
+        let openMap = document.getElementById('leaflet-map')
+        let googleMap = document.getElementById('google-map')
         let googleAutocomplete = document.getElementById('google-search')
 
         if(this.googleMapActive) {

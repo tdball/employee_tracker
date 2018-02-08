@@ -21,27 +21,33 @@
 <body>
     <div class="fullscreen">
         <div class="map-area">
-            <div class="map" id="gmap"></div>
-            <div class="map" style='display:none;' id="omap"></div>
+            <div class="map" id="google-map"></div>
+            <div class="map" style='display:none;' id="leaflet-map"></div>
         </div>
         <div class="map-controls">
-            <button class="map-toggle" type="button" id="mapToggle" onclick="mapSwitch.toggleMaps()">Toggle OpenStreet Maps</button>
-            <input class="google-search" type="text" id="google-search" placeholder="FIXME: Only a placeholder, no puns intended...">
+            <button class="map-toggle" type="button" id="map-toggle">Toggle OpenStreet Maps</button>
+            <div class="google-search">
+                <input type="text" id="google-search" placeholder="FIXME: Only a placeholder, no puns intended...">
+                <button class="search">
+                </button>
+            </div>
         </div>
     </div>
 <script>
-    let mapSwitch = new MapSwitch()
-    let openMarkers = []
+    let leafletMarkers = []
+
     // Verify page content has loaded.
     document.addEventListener("DOMContentLoaded", function() {
-
-        let gmap = initGoogle('gmap')
-        let omap = initLeaflet('omap')
+        let mapSwitch = new MapSwitch()
+        let mapToggle = document.getElementById('map-toggle')
+        mapToggle.onclick = mapSwitch.toggleMaps
+        let gMap = initGoogle('google-map')
+        let lMap = initLeaflet('leaflet-map')
         // lets populate the userData across both maps
         for(let entry of userData) {
             if(validCoordinate(entry)) {
-                populateGoogle(entry, gmap)
-                populateLeaflet(entry, omap)
+                populateGoogle(entry, gMap)
+                populateLeaflet(entry, lMap)
             }
         }
     });
