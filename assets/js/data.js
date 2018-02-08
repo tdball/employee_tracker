@@ -1,4 +1,4 @@
-let userData = [
+const userData = [
     {"name": "Location One", "latitude": 36.099754, "longitude": -95.843868, "logo": ""},
     {"name": "Location Two", "latitude": 37.84994956, "longitude": -95.25893199, "logo": "images/kalibrate-logo.png"},
     {"name": "Location Three", "latitude": 34.78898788, "longitude": 97.08947292, "logo": ""},

@@ -1,6 +1,6 @@
-defaultZoom = 8
-defaultLat = 36
-defaultLng = 97
+const defaultZoom = 8
+const defaultLat = 36
+const defaultLng = 97
 
 function initGoogle(id) {
     // Creates a map using Google's JS Map API
