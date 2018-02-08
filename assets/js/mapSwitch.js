@@ -11,10 +11,10 @@ class MapSwitch {
         this.leafletMap = document.getElementById('leaflet-map')
         this.googleMap = document.getElementById('google-map')
         this.googleSearch = document.getElementById('google-search')
-        document.addEventListener("mapResize", this.resizeMaps)
+        document.addEventListener("mapResize", MapSwitch.resizeMaps)
     }
 
-    resizeMaps() {
+    static resizeMaps() {
         /*
          Hacky solution, due to display:none being the default for the leaflet map on load
          this timeout of 1ms will let the browser swap the display to block and then the

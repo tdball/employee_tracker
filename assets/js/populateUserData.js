@@ -3,7 +3,13 @@ const defaultLat = 36
 const defaultLng = 97
 
 function initGoogle(id) {
-    // Creates a map using Google's JS Map API
+    /*
+    param: id (string)
+    returns: map (google.maps.Map)
+    Creates a map using Google's JS Map API and the `id` parameter. Defaults to the first entry in userData
+    or the defined `defaultLat`, `defaultLng`, and `defaultZoom`.
+     */
+
     if(userData[0]) {
         let map = new google.maps.Map(document.getElementById(id), {
             center: {lat: userData[0].latitude || defaultLat , lng: userData[0].longitude || defaultLng},
@@ -16,7 +22,14 @@ function initGoogle(id) {
 
 
 function initLeaflet(id) {
-    // Creates a Leaflet JS map using open street maps tiles
+    /*
+    param: id (string)
+    returns: map (L.map)
+    Creates a map using Leaflet's JS Map API and the `id` parameter. Defaults to the first entry in userData
+    or the defined `defaultLat`, `defaultLng`, and `defaultZoom`.
+
+    Tiles hosted by mapbox, sourced from Open Street Maps
+     */
     if(userData[0]){
         let map = L.map(id, {
             center: [userData[0].latitude || defaultLat, userData[0].longitude || defaultLng],
@@ -35,13 +48,21 @@ function initLeaflet(id) {
 
 
 function attachMapData(id, map) {
-    // Binds the map to it's element stored under mapObject,
-    // allows for access outside lexical scope
+    /*
+    param: id (string)
+    param: map (L.map || google.maps.Map)
+
+    Binds the map to the specified id's element stored under mapObject property.
+     */
     document.getElementById(id).mapObject = map
 }
 
 
 function populateGoogle(userData, map) {
+    /*
+    param: userData (Object)
+    param: map (google.maps.Map)
+     */
     let marker = new google.maps.Marker({
         position: {lat: userData.latitude, lng: userData.longitude},
         map: map,
