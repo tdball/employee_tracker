@@ -23,14 +23,24 @@ body {
   flex-direction: row;
   pointer-events: all;
   position: fixed;
-  width: 75%;
+  width: 85%;
   top: 5rem;
   left: 0.5rem; }
+  .google-search input {
+    width: 72.5%; }
+  .google-search button {
+    font-weight: 500;
+    text-align: center;
+    width: 27.5%; }
   @media (min-width: 768px) and (max-width: 1023px) {
     .google-search {
       width: 50%;
       top: 0.66rem;
-      left: 10rem; } }
+      left: 10rem; }
+      .google-search input {
+        width: 85%; }
+      .google-search button {
+        width: 15%; } }
   @media (min-width: 1024px) {
     .google-search {
       width: 35%;
@@ -77,13 +87,11 @@ body {
   box-shadow: 0 1px 2px rgba(50, 50, 50, 0.25); }
   .google-search input {
     padding: 0.33rem 0.5rem;
-    width: 85%;
     border: none; }
   .google-search button {
     color: whitesmoke;
     background: darkslategrey;
     margin: 0;
-    width: 15%;
     border: none; }
   .google-search button:hover {
     background: slategray; }
