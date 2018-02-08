@@ -1,9 +1,4 @@
-FROM python:3.6-alpine3.6
-
-RUN apk add --no-cache \
-    gcc \
-    musl-dev \
-    linux-headers
+FROM python:3.6
 
 COPY * /api/
 
