@@ -13,30 +13,8 @@ function validCoordinate(coordinateObject, delay) {
         .then((response) => response.json())
         .then((data) => {
             console.log(data)
-            return data.water
+            return data.inWater
             })
-    }
-}
-
-function geocodeHandler(results, status) {
-    // Not effective at the moment, may go down another path to solve this problem
-    if (status === 'OK') {
-        for (let result of results) {
-            console.log(result)
-            for (let type of result.types) {
-                if (type === 'sea' || 'ocean' || 'lake') {
-                    return false
-                } else {
-                    return true
-                }
-            }
-        }
-    } else if(status === 'OVER_QUERY_LIMIT') {
-        console.log(status)
-    } else {
-        // TODO: add better error handling here
-        console.log(status)
-        return false
     }
 }
 
