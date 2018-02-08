@@ -4,7 +4,11 @@ import json
 import fiona
 from shapely.geometry import Point, asShape
 from flask import Flask, request
+from flask_cors import CORS
+
+
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/api/in-water/', methods=['GET'])
 def expose_api():
