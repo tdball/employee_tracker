@@ -3,27 +3,25 @@ function validCoordinate(coordinateObject) {
     if (!coordinateObject.latitude || !coordinateObject.longitude) {
         return false
     }
-        // Make sure they are within a sane range
+    // Make sure they are within a sane range
     switch(coordinateObject) {
         case coordinateObject.latitude > 90:
+            console.log('case')
             return false
         case coordinateObject.latitude < -90:
+            console.log('case')
             return false
         case coordinateObject.longitude > 180:
+            console.log('case')
             return false
         case coordinateObject.longitude < -180:
+            console.log('case')
             return false
+        // If they are, verify them against the API
         default:
-            fetch(`https://tdball.net/api/in-water/?latitude=${coordinateObject.latitude}&longitude=${coordinateObject.longitude}`)
+            return fetch(`https://tdball.net/api/in-water/?latitude=${coordinateObject.latitude}&longitude=${coordinateObject.longitude}`)
                 .then((response) => response.json())
-                .then((data) => {
-                    //Could be more concise, however leaving expanded so it's more legible
-                    if(!data.inWater) {
-                        return true
-                    } else {
-                        return false
-                    }
-                })
+                .then((data) => (!data.inWater))
     }
 }
 
