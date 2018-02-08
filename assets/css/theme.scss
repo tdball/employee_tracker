@@ -11,8 +11,8 @@
   font-weight: 500;
   border: 0;
   border-radius: 0.1rem;
-  background: rgba(255, 255, 255, 1);
-  color: black;
+  background: darkslategrey;
+  color: whitesmoke;
   margin: 0;
   padding: 0.5rem;
   height: auto;
@@ -24,7 +24,7 @@
 }
 
 .map-toggle:hover {
-  background: rgba(235, 235, 235, 1);
+  background: slategray;
 }
 
 .google-search {
@@ -37,15 +37,18 @@
   box-shadow: $google-shadow;
   input {
     padding: 0.33rem 0.5rem;
-    width: 80%;
+    width: 85%;
     border: none;
   }
   button {
     color: whitesmoke;
     background: darkslategrey;
-    margins: 0;
-    width: 20%;
+    margin: 0;
+    width: 15%;
     border: none;
+  }
+  button:hover {
+    background: slategray;
   }
 }
 
