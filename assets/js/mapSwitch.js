@@ -36,20 +36,21 @@ class MapSwitch {
 
         let openMap = document.getElementById('omap')
         let googleMap = document.getElementById('gmap')
-        let googleAutocomplete = document.getElementById('gmap-autocomplete')
+        //let googleAutocomplete = document.getElementById('gmap-autocomplete')
 
         if(this.googleMapActive) {
-            this.provider = 'google'
             this.toggleButton.innerText = 'OpenStreet Maps'
             openMap.style.display = 'none'
             googleMap.style.display = 'block'
-            googleAutocomplete.style.display = 'block'
+            //googleAutocomplete.style.display = 'block'
         } else {
-            this.provider = 'leaflet'
+            let center = googleMap.mapObject.getCenter()
+            let zoom = googleMap.mapObject.getZoom()
             this.toggleButton.innerText = 'Google Maps'
+            openMap.mapObject.setView(new L.LatLng(center.lat(), center.lng()), zoom)
             openMap.style.display = 'block'
             googleMap.style.display = 'none'
-            googleAutocomplete.style.display = 'none'
+            // googleAutocomplete.style.display = 'none'
         }
     }
 
