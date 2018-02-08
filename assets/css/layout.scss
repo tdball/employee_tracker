@@ -12,27 +12,34 @@ body {
 .map-controls {
   position: fixed;
   z-index: 1001;
-  display: grid;
-  grid-template-rows: repeat(32, 1fr);
-  grid-template-columns: repeat(32, 1fr);
   height: 100%;
   width: 100%;
   pointer-events: none;
 }
 .map-toggle {
-  grid-row: 27/30;
-  grid-column: 2/10;
-  @include tablet {
-    grid-row: 28/29;
-    grid-column: 1/6;
-  }
-  @include desktop {
-    grid-row: 28/29;
-    grid-column: 1/4;
-  }
   pointer-events: all;
+  position: fixed;
+  left: 0.5rem;
+  bottom: 5rem;
 }
 
+.google-search {
+  pointer-events: all;
+  position: fixed;
+  width: 88%;
+  top: 5rem;
+  left: 0.5rem;
+  @include tablet {
+    width: 50%;
+    top: 0.5rem;
+    left: 10rem;
+  }
+  @include desktop {
+    width: 35%;
+    top: 0.5rem;
+    left: 10rem;
+  }
+}
 .map-area {
   display: block;
   position: fixed;

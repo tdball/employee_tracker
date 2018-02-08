@@ -36,7 +36,7 @@ class MapSwitch {
 
         let openMap = document.getElementById('omap')
         let googleMap = document.getElementById('gmap')
-        //let googleAutocomplete = document.getElementById('gmap-autocomplete')
+        let googleAutocomplete = document.getElementById('google-search')
 
         if(this.googleMapActive) {
             let center = openMap.mapObject.getCenter()
@@ -48,7 +48,7 @@ class MapSwitch {
             this.toggleButton.innerText = 'Toggle OpenStreet Maps'
             openMap.style.display = 'none'
             googleMap.style.display = 'block'
-            //googleAutocomplete.style.display = 'block'
+            googleAutocomplete.style.display = 'block'
         } else {
             let center = googleMap.mapObject.getCenter()
             let zoom = googleMap.mapObject.getZoom()
@@ -58,7 +58,7 @@ class MapSwitch {
             this.toggleButton.innerText = 'Toggle Google Maps'
             openMap.style.display = 'block'
             googleMap.style.display = 'none'
-            // googleAutocomplete.style.display = 'none'
+            googleAutocomplete.style.display = 'none'
         }
     }
 
