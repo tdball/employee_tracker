@@ -20,13 +20,14 @@ body {
   pointer-events: all;
   position: fixed;
   left: 0.5rem;
-  bottom: 5rem;
+  bottom: 3rem;
 }
 
 .google-search {
+  display: flex;
   pointer-events: all;
   position: fixed;
-  width: 88%;
+  width: 75%;
   top: 5rem;
   left: 0.5rem;
   @include tablet {

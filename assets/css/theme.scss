@@ -27,6 +27,17 @@
   background: rgba(235, 235, 235, 1);
 }
 
+.google-search {
+  padding: 0.33rem 0.5rem;
+  font-size: medium;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.1rem;
+  background: rgba(255, 255, 255, 1);
+  color: black;
+  box-shadow: 1px 1px 2px rgba(50, 50, 50, 0.50);
+}
+
 //TODO: Flesh out selection slider
 .map-toggle-google {
 
