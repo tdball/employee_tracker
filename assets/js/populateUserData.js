@@ -62,6 +62,8 @@ function populateGoogle(userData, map) {
     /*
     param: userData (Object)
     param: map (google.maps.Map)
+
+    Accepts a userData Object
      */
     let marker = new google.maps.Marker({
         position: {lat: userData.latitude, lng: userData.longitude},
@@ -71,21 +73,23 @@ function populateGoogle(userData, map) {
     let popup = new google.maps.InfoWindow({
         content: userData.name
     })
+
     marker.addListener('click', function () {
-        /* FIXME: Does not actually close popups, needs more research
-        while(openMarkers.length > 0) {
-            let openMarker = openMarkers.pop()
-            popup.close(map, openMarker)
-        }*/
-
+        while(googleInfoWindows.length > 0) {
+            let infoWindow = googleInfoWindows.pop()
+            infoWindow.popup.close(map, infoWindow.marker)
+        }
         popup.open(map, marker)
-        openMarkers.push(marker)
-
+        googleInfoWindows.push({popup: popup, marker: marker})
     })
 }
 
 
 function populateLeaflet(userData, map) {
+    /*
+    param: userData (Object)
+    param: map (L.map)
+     */
     let marker = L.marker([userData.latitude, userData.longitude])
     if(userData.logo) {
         marker.options.icon = L.icon({
