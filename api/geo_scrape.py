@@ -1,7 +1,21 @@
 import os
+import json
 
 import fiona
 from shapely.geometry import Point, asShape
+from flask import Flask, request
+app = Flask(__name__)
+
+@app.route('/api/in-water/', methods=['GET'])
+def expose_api():
+    if request.method == 'GET':
+        latitude = request.args.get('latitude')
+        longitude = request.args.get('longitude')
+        if latitude and longitude:
+            return json.dumps({"inWater": in_water(float(latitude), float(longitude))})
+        else:
+            return json.dumps({"inWater": None})
+
 
 def in_water(lat: float, lon: float) -> bool:
     """
@@ -12,7 +26,7 @@ def in_water(lat: float, lon: float) -> bool:
     :param lon: float
     :return: bool
     """
-    path = os.path.abspath('assets/water-polygons/water_polygons.shp')
+    path = os.path.abspath('water-polygons/water_polygons.shp')
     with fiona.open(path) as fiona_collection:
         point = Point(lon, lat)
         # here we filter to only scan results near the point in question.
@@ -24,8 +38,8 @@ def in_water(lat: float, lon: float) -> bool:
         return False
 
 if __name__ == '__main__':
-
-    ocean = (33.042479, -135.918978)
-    land = (36.163065, -95.971463)
-    assert in_water(*ocean)
-    assert not in_water(*land)
+    app.run(host='0.0.0.0', port=3100)
+    # ocean = (33.042479, -135.918978)
+    # land = (36.163065, -95.971463)
+    # assert in_water(*ocean)
+    # assert not in_water(*land)

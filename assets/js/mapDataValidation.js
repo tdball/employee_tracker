@@ -9,7 +9,7 @@ function validCoordinate(coordinateObject, delay) {
         coordinateObject.latitude < -90) {
         return false
     } else {
-        fetch(`https://api.tdball.net/in-water/?latitude=${coordinateObject.latitude}&longitude=${coordinateObject.longitude}`)
+        fetch(`https://tdball.net/api/in-water/?latitude=${coordinateObject.latitude}&longitude=${coordinateObject.longitude}`)
         .then((response) => response.json())
         .then((data) => {
             console.log(data)
