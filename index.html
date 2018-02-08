@@ -26,8 +26,8 @@
         </div>
         <div class="map-controls">
             <button class="map-toggle" type="button" id="map-toggle">Toggle OpenStreet Maps</button>
-            <div class="google-search">
-                <input type="text" id="google-search" placeholder="FIXME: Only a placeholder, no puns intended...">
+            <div class="google-search" id="google-search">
+                <input type="text" placeholder="FIXME: Only a placeholder, no puns intended...">
                 <button class="search">Search</button>
             </div>
         </div>
@@ -39,7 +39,7 @@
     document.addEventListener("DOMContentLoaded", function() {
         let mapSwitch = new MapSwitch()
         let mapToggle = document.getElementById('map-toggle')
-        mapToggle.onclick = mapSwitch.toggleMaps
+        mapToggle.onclick = () => mapSwitch.toggleMaps()
         let gMap = initGoogle('google-map')
         let lMap = initLeaflet('leaflet-map')
         // lets populate the userData across both maps

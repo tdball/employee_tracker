@@ -6,8 +6,11 @@ class MapSwitch {
 
     constructor() {
         this.googleMapActive = true
-        this.toggleButton = document.getElementById('mapToggle')
+        this.toggleButton = document.getElementById('map-toggle')
         this.mapResize = new CustomEvent("mapResize")
+        this.leafletMap = document.getElementById('leaflet-map')
+        this.googleMap = document.getElementById('google-map')
+        this.googleSearch = document.getElementById('google-search')
         document.addEventListener("mapResize", this.resizeMaps)
     }
 
@@ -22,7 +25,8 @@ class MapSwitch {
          up for this workaround.
           */
         setTimeout(function() {
-            document.getElementById('omap').mapObject.invalidateSize()
+            let leafletMap = document.getElementById('leaflet-map')
+            leafletMap.mapObject.invalidateSize()
         }, 1)
     }
 
@@ -34,31 +38,28 @@ class MapSwitch {
         document.dispatchEvent(this.mapResize)
         this.googleMapActive = !this.googleMapActive
 
-        let openMap = document.getElementById('leaflet-map')
-        let googleMap = document.getElementById('google-map')
-        let googleAutocomplete = document.getElementById('google-search')
 
         if(this.googleMapActive) {
-            let center = openMap.mapObject.getCenter()
-            let zoom = openMap.mapObject.getZoom()
+            let center = this.leafletMap.mapObject.getCenter()
+            let zoom = this.leafletMap.mapObject.getZoom()
             // Apply the current center/zoom to the new map view
-            googleMap.mapObject.setCenter({lat: center.lat, lng: center.lng})
-            googleMap.mapObject.setZoom(zoom)
+            this.googleMap.mapObject.setCenter({lat: center.lat, lng: center.lng})
+            this.googleMap.mapObject.setZoom(zoom)
 
             this.toggleButton.innerText = 'Toggle OpenStreet Maps'
-            openMap.style.display = 'none'
-            googleMap.style.display = 'block'
-            googleAutocomplete.style.display = 'block'
+            this.leafletMap.style.display = 'none'
+            this.googleMap.style.display = 'block'
+            this.googleSearch.style.display = 'flex'
         } else {
-            let center = googleMap.mapObject.getCenter()
-            let zoom = googleMap.mapObject.getZoom()
+            let center = this.googleMap.mapObject.getCenter()
+            let zoom = this.googleMap.mapObject.getZoom()
             // Apply the current center/zoom to the new map view
-            openMap.mapObject.setView(new L.LatLng(center.lat(), center.lng()), zoom)
+            this.leafletMap.mapObject.setView(new L.LatLng(center.lat(), center.lng()), zoom)
 
             this.toggleButton.innerText = 'Toggle Google Maps'
-            openMap.style.display = 'block'
-            googleMap.style.display = 'none'
-            googleAutocomplete.style.display = 'none'
+            this.leafletMap.style.display = 'block'
+            this.googleMap.style.display = 'none'
+            this.googleSearch.style.display = 'none'
         }
     }
 

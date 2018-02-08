@@ -20,6 +20,7 @@ body {
 
 .google-search {
   display: flex;
+  flex-direction: row;
   pointer-events: all;
   position: fixed;
   width: 75%;
