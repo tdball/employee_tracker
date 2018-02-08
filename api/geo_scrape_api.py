@@ -1,12 +1,15 @@
 import os
 import json
+from functools import lru_cache
 
 import fiona
 from shapely.geometry import Point, asShape
 from flask import Flask, request
 app = Flask(__name__)
 
+
 @app.route('/api/in-water/', methods=['GET'])
+@lru_cache(maxsize=128)
 def expose_api():
     if request.method == 'GET':
         latitude = request.args.get('latitude')
@@ -37,9 +40,6 @@ def in_water(lat: float, lon: float) -> bool:
                     return True
         return False
 
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3100)
-    # ocean = (33.042479, -135.918978)
-    # land = (36.163065, -95.971463)
-    # assert in_water(*ocean)
-    # assert not in_water(*land)
