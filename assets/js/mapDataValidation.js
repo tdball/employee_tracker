@@ -12,9 +12,13 @@ function validCoordinate(coordinateObject, delay) {
         fetch(`https://tdball.net/api/in-water/?latitude=${coordinateObject.latitude}&longitude=${coordinateObject.longitude}`)
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
-            return data.inWater
-            })
+            //Could be more concise, however leaving expanded so it's more legible
+            if(!data.inWater) {
+                return true
+            } else {
+                return false
+            }
+        })
     }
 }
 
