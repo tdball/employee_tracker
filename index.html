@@ -33,7 +33,10 @@
         </div>
     </div>
 <script>
+    /*store open google windows, so we can mimic
+     leafletJS's handling of popups on markers */
     let googleInfoWindows = []
+
     // Verify page content has loaded.
     document.addEventListener("DOMContentLoaded", function() {
         let mapSwitch = new MapSwitch()
