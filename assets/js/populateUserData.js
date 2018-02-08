@@ -63,8 +63,8 @@ function populateLeaflet(userData, map) {
         marker.options.icon = L.icon({
             iconUrl: userData.logo,
             iconSize: [32, 32],
-            iconAnchor: [0, 0],
-            popupAnchor: [-3, -76],
+            iconAnchor: [16, 32],
+            popupAnchor: [0, -32],
         })
     }
     let popup = marker.bindPopup(userData.name)
