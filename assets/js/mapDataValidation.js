@@ -2,19 +2,19 @@ function validCoordinate(coordinateObject, delay) {
     // Make sure we have coordinates
     if (!coordinateObject.latitude || !coordinateObject.longitude) {
         return false
+    // Make sure they are within a sane range
+    } else if( coordinateObject.longitude > 180 ||
+        coordinateObject.longitude < -180 &&
+        coordinateObject.latitude > 90 ||
+        coordinateObject.latitude < -90) {
+        return false
     } else {
-        return true
-        /*
-        // If we do verify that they aren't over some form of water
-        // TODO: check all types on google's API
-        // TODO: Stumped here, Google's API has access limits, major impact on user experience.
-        // TODO: Maybe some low level range checking may suffice.
-        // TODO: Seems the proper solution is to cache locations server side
-        let geocoder = new google.maps.Geocoder;
-        geocoder.geocode({
-            'location': {lat: coordinateObject.latitude, lng: coordinateObject.longitude}
-        }, geocodeHandler)
-        */
+        fetch(`https://api.tdball.net/in-water/?latitude=${coordinateObject.latitude}&longitude=${coordinateObject.longitude}`)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data)
+            return data.water
+            })
     }
 }
 
