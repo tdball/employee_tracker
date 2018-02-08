@@ -45,7 +45,11 @@ body {
     .google-search {
       width: 35%;
       top: 0.66rem;
-      left: 10rem; } }
+      left: 10rem; }
+      .google-search input {
+        width: 85%; }
+      .google-search button {
+        width: 15%; } }
 
 .map-area {
   display: block;
