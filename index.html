@@ -30,11 +30,12 @@
     </div>
 <script>
     let mapSwitch = new MapSwitch()
+    let openMarkers = []
     // Verify page content has loaded.
     document.addEventListener("DOMContentLoaded", function() {
+
         let gmap = initGoogle('gmap')
         let omap = initLeaflet('omap')
-
         // lets populate the userData across both maps
         for(let entry of userData) {
             if(validCoordinate(entry)) {
