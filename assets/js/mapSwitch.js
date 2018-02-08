@@ -45,7 +45,7 @@ class MapSwitch {
             googleMap.mapObject.setCenter({lat: center.lat, lng: center.lng})
             googleMap.mapObject.setZoom(zoom)
 
-            this.toggleButton.innerText = 'OpenStreet Maps'
+            this.toggleButton.innerText = 'Toggle OpenStreet Maps'
             openMap.style.display = 'none'
             googleMap.style.display = 'block'
             //googleAutocomplete.style.display = 'block'
@@ -55,7 +55,7 @@ class MapSwitch {
             // Apply the current center/zoom to the new map view
             openMap.mapObject.setView(new L.LatLng(center.lat(), center.lng()), zoom)
 
-            this.toggleButton.innerText = 'Google Maps'
+            this.toggleButton.innerText = 'Toggle Google Maps'
             openMap.style.display = 'block'
             googleMap.style.display = 'none'
             // googleAutocomplete.style.display = 'none'
