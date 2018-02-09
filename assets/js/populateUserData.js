@@ -12,7 +12,8 @@ function initGoogle(id) {
 
     let map = new google.maps.Map(document.getElementById(id), {
         center: {lat: defaultLat , lng:  defaultLng},
-        zoom: defaultZoom
+        zoom: defaultZoom,
+        fullscreenControl: false
     })
     attachMapData(id, map)
     return map
