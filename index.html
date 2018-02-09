@@ -16,6 +16,7 @@
     <script type='text/javascript' src="assets/js/mapSwitch.js"></script>
     <script type='text/javascript' src="assets/js/mapDataValidation.js"></script>
     <script type='text/javascript' src="assets/js/populateUserData.js"></script>
+    <script type='text/javascript' src="assets/js/populateAutocomplete.js"></script>
 </head>
 <body>
     <div class="fullscreen">
@@ -27,7 +28,7 @@
             <button class="map-toggle" type="button" id="map-toggle">Toggle OpenStreet Maps</button>
             <div class="google-search" id="google-search">
                 <input type="text" id='google-autocomplete' placeholder="Start Typing...">
-                <button class="search" id="google-search-button">Search</button>
+                <button class="search" id="google-search-button">Clear</button>
             </div>
         </div>
     </div>
@@ -35,8 +36,8 @@
     /*store open google windows, so we can mimic
      leafletJS's handling of popups on markers */
     let googleInfoWindows = []
+    let autoCompleteMarkers = []
     let googleMarkers = []
-    let autocompleteMarkers = []
     let validData = []
 
     // Verify page content has loaded.
