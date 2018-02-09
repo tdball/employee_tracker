@@ -10,25 +10,17 @@ function validCoordinate(coordinateObject) {
     if (!coordinateObject.latitude || !coordinateObject.longitude) {
         return false
     }
+
     // Make sure they are within a sane range
-    switch(coordinateObject) {
-        case coordinateObject.latitude > 90:
-            console.log('case')
-            return false
-        case coordinateObject.latitude < -90:
-            console.log('case')
-            return false
-        case coordinateObject.longitude > 180:
-            console.log('case')
-            return false
-        case coordinateObject.longitude < -180:
-            console.log('case')
-            return false
-        // If they are, verify them against the API
-        default:
-            return fetch(`https://tdball.net/api/in-water/?lat=${coordinateObject.latitude}&lng=${coordinateObject.longitude}`)
-                .then((response) => response.json())
-                .then((data) => (!data.inWater))
+    if(coordinateObject.latitude > 90 || coordinateObject.latitude < -90) {
+        return false
     }
+    if(coordinateObject.longitude > 180 || coordinateObject.longitude < -180){
+        return false
+    }
+    return fetch(`https://tdball.net/api/in-water/?lat=${coordinateObject.latitude}&lng=${coordinateObject.longitude}`)
+        .then((response) => response.json())
+        .then((data) => (!data.inWater))
 }
 
+//    {"name": "Location Nine", "latitude": 97.64949469, "longitude": 37.1179533, "logo": ""},
