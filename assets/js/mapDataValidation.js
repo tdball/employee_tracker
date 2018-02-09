@@ -26,7 +26,7 @@ function validCoordinate(coordinateObject) {
             return false
         // If they are, verify them against the API
         default:
-            return fetch(`https://tdball.net/api/in-water/?latitude=${coordinateObject.latitude}&longitude=${coordinateObject.longitude}`)
+            return fetch(`https://tdball.net/api/in-water/?lat=${coordinateObject.latitude}&lng=${coordinateObject.longitude}`)
                 .then((response) => response.json())
                 .then((data) => (!data.inWater))
     }

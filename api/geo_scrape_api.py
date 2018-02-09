@@ -21,12 +21,12 @@ def in_water_view():
     :return: JSON
     """
     if request.method == 'GET':
-        latitude = request.args.get('latitude')
-        longitude = request.args.get('longitude')
+        latitude = request.args.get('lat')
+        longitude = request.args.get('lng')
         if latitude and longitude:
             return json.dumps({"inWater": in_water(float(latitude), float(longitude))})
         else:
-            return json.dumps({"invalidData": "Please provide both `latitude` and `longitude`"})
+            return json.dumps({"invalidData": "Please provide both `lat` and `lng`"})
 
 @app.route('/api/in-water/cache', methods=['GET'])
 def cache():
@@ -45,7 +45,7 @@ def cache():
 
 
 @lru_cache(maxsize=128)
-def in_water(lat: float, lon: float) -> bool:
+def in_water(latitude: float, longitude: float) -> bool:
     """
     Simple function to parse a shapefile from OpenStreet Maps.
     Returns a boolean signifying a location is or is not over
@@ -54,15 +54,15 @@ def in_water(lat: float, lon: float) -> bool:
     LRU Caching provided via functools.lru_cache. Uses memoization
     to cache recently scanned results and provide large performance gains.
 
-    :param lat: float
-    :param lon: float
+    :param latitude: float
+    :param longitude: float
     :return: bool
     """
     path = os.path.abspath('water_polygons.shp')
     with fiona.open(path) as fiona_collection:
-        point = Point(lon, lat)
+        point = Point(longitude, latitude)
         # here we filter to only scan results near the point in question.
-        for record in fiona_collection.filter(bbox=(int(lon)+1, int(lat)+1, int(lon)-1, int(lat)-1)):
+        for record in fiona_collection.filter(bbox=(int(longitude)+1, int(latitude)+1, int(longitude)-1, int(latitude)-1)):
             if record['geometry']:
                 shape = asShape(record['geometry'])
                 if shape.contains(point):
