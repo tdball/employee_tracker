@@ -24,7 +24,13 @@ def in_water_view():
         latitude = request.args.get('lat')
         longitude = request.args.get('lng')
         if latitude and longitude:
-            return json.dumps({"inWater": in_water(float(latitude), float(longitude))})
+            if -90 >= latitude <= 90:
+                if -180 >= longitude <= 90:
+                    return json.dumps({"inWater": in_water(float(latitude), float(longitude))})
+                else:
+                    return json.dumps({"invalidData": "`lng` out of range."})
+            else:
+                return json.dumps({"invalidData": "`lat out of range"})
         else:
             return json.dumps({"invalidData": "Please provide both `lat` and `lng`"})
 
