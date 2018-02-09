@@ -4,8 +4,9 @@ COPY * /api/
 
 WORKDIR /api
 
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt && \
+    useradd -M uwsgi
 
 EXPOSE 3100
 
-ENTRYPOINT python /api/geo_scrape_api.py
+ENTRYPOINT uwsgi -i uwsgi.ini
