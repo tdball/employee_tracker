@@ -13,7 +13,7 @@ CORS(app)
 
 
 @app.route('/api/in-water/', methods=['GET'])
-def expose_in_water():
+def in_water_view():
     """
     small Flask endpoint, returns JSON to function as a very basic API
     verifies that the user data has been submitted, otherwise returns
