@@ -13,7 +13,6 @@ CORS(app)
 
 
 @app.route('/api/in-water/', methods=['GET'])
-@lru_cache(maxsize=128)
 def expose_api():
     if request.method == 'GET':
         latitude = request.args.get('latitude')
@@ -23,10 +22,10 @@ def expose_api():
         else:
             return json.dumps({"inWater": None})
 
-@app.route('/api/cache', methods=['GET'])
+@app.route('/api/in-water/cache', methods=['GET'])
 def cache():
     if request.method == 'GET':
-        cache_info = expose_api.cache_info()
+        cache_info = in_water.cache_info()
         return json.dumps({
             'hits': cache_info.hits,
             'misses': cache_info.misses,
@@ -34,6 +33,8 @@ def cache():
             'currsize': cache_info.currsize,
         })
 
+
+@lru_cache(maxsize=128)
 def in_water(lat: float, lon: float) -> bool:
     """
     Simple function to parse a shapefile from OpenStreet Maps.
