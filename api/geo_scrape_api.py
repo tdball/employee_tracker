@@ -4,7 +4,7 @@ from functools import lru_cache
 
 import fiona
 from shapely.geometry import Point, asShape
-from flask import Flask, request
+from flask import Flask, request, Response
 from flask_cors import CORS
 
 
@@ -28,13 +28,22 @@ def in_water_view():
             longitude = float(longitude)
             if -90 <= latitude <= 90:
                 if -180 <= longitude <= 180:
-                    return json.dumps({"inWater": in_water(latitude, longitude)})
+                    return Response(
+                        json.dumps({"inWater": in_water(latitude, longitude)}),
+                        mimetype='application/json')
                 else:
-                    return json.dumps({"invalidData": "`lng` out of range."})
+                    return Response(
+                        json.dumps({"invalidData": "`lng` out of range."}),
+                        mimetype='application/json')
             else:
-                return json.dumps({"invalidData": "`lat out of range"})
+                return Response(
+                    json.dumps({"invalidData": "`lat out of range"}),
+                    mimetype='application/json')
         else:
-            return json.dumps({"invalidData": "Please provide both `lat` and `lng`"})
+            return Response(
+                json.dumps({"invalidData": "Please provide both `lat` and `lng`"}),
+                mimetype='application/json'
+            )
 
 @app.route('/api/in-water/cache', methods=['GET'])
 def cache():
