@@ -27,7 +27,7 @@ def in_water_view():
             latitude = float(latitude)
             longitude = float(longitude)
             if -90 <= latitude <= 90:
-                if -180 <= longitude <= 90:
+                if -180 <= longitude <= 180:
                     return json.dumps({"inWater": in_water(latitude, longitude)})
                 else:
                     return json.dumps({"invalidData": "`lng` out of range."})
