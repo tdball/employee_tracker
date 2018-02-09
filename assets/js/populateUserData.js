@@ -121,20 +121,21 @@ function populateLeaflet(userData, map) {
 }
 
 function reverseLookup(userData, delay) {
-    let geocoder = new google.maps.Geocoder
+    return new Promise(function(resolve, reject) {
+        let geocoder = new google.maps.Geocoder
         let latlng = {lat: userData.latitude, lng: userData.longitude}
         setTimeout(function() {
             geocoder.geocode({'location': latlng}, function(results, status) {
                 if(status === 'OK') {
                     if (results[0]) {
-                        return results.formatted_address
+                        resolve(results[0].formatted_address)
                     }
                 } else if(status === 'OVER_QUERY_LIMIT') {
-                    console.log(userData, status)
-                    return null
+                    reject(status)
                 }
             })
         }, delay)
+    })
 }
 
 function populateAutocomplete() {
@@ -155,8 +156,12 @@ function googleAutocomplete() {
         let delay = 2000
         for (entry of validData) {
             delay += 2000
-            let address = reverseLookup(entry, delay)
-            console.log(address)
+            reverseLookup(entry, delay).then(function(resolve) {
+                console.log(resolve)
+            }).catch(function(reject) {
+                console.log(reject)
+            })
+
         }
     }
     searchField.autoComplete.addListener('place_changed', populateAutocomplete)
