@@ -23,6 +23,16 @@ def expose_api():
         else:
             return json.dumps({"inWater": None})
 
+@app.route('/api/cache', methods=['GET'])
+def cache():
+    if request.method == 'GET':
+        cache_info = expose_api.cache_info()
+        return json.dumps({
+            'hits': cache_info.hits,
+            'misses': cache_info.misses,
+            'maxsize': cache_info.maxsize,
+            'currsize': cache_info.currsize,
+        })
 
 def in_water(lat: float, lon: float) -> bool:
     """
