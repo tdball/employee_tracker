@@ -11,7 +11,6 @@ function populateAutocomplete() {
     let place = searchField.autoComplete.getPlace()
     let googleMap = document.getElementById('google-map').mapObject
     if(place.geometry) {
-        console.log(place)
         let popup = new google.maps.InfoWindow({content: place.name})
         let marker = new google.maps.Marker({
             position: place.geometry.location,
