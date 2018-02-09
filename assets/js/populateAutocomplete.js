@@ -43,6 +43,11 @@ function googleAutocomplete() {
         searchField.value = null
         for(let marker of autoCompleteMarkers) {
             marker.setMap(null)
+
+        }
+        while(googleInfoWindows.length > 0) {
+            let infoWindow = googleInfoWindows.pop()
+            infoWindow.popup.close(document.getElementById('google-map').mapObject, infoWindow.marker)
         }
         for(let marker of googleMarkers) {
             marker.setVisible(true)

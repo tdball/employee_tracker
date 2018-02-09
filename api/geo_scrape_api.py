@@ -68,12 +68,12 @@ def in_water(latitude: float, longitude: float) -> bool:
     """
     path = os.path.abspath('water_polygons.shp')
     with fiona.open(path) as fiona_collection:
-        box_accuracy = 0.001
+        box_detail = 0.0001
         point = Point(longitude, latitude)
         # here we filter to only scan results near the point in question.
         for record in fiona_collection.filter(bbox=(
-                longitude+box_accuracy, latitude+box_accuracy,
-                longitude-box_accuracy, latitude-box_accuracy)):
+                longitude+box_detail, latitude+box_detail,
+                longitude-box_detail, latitude-box_detail)):
             if record['geometry']:
                 shape = asShape(record['geometry'])
                 if shape.contains(point):
