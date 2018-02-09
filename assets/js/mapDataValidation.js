@@ -23,4 +23,3 @@ function validCoordinate(coordinateObject) {
         .then((data) => (!data.inWater))
 }
 
-//    {"name": "Location Nine", "latitude": 97.64949469, "longitude": 37.1179533, "logo": ""},
