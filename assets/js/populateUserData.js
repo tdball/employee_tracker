@@ -88,6 +88,7 @@ function populateGoogle(userData, map) {
         popup.open(map, marker)
         googleInfoWindows.push({popup: popup, marker: marker})
     })
+    googleMarkers.push(marker)
 }
 
 
@@ -117,4 +118,46 @@ function populateLeaflet(userData, map) {
     }
     marker.on('click', () => (popup.openPopup()))
     marker.addTo(map)
+}
+
+function reverseLookup(userData, delay) {
+    let geocoder = new google.maps.Geocoder
+        let latlng = {lat: userData.latitude, lng: userData.longitude}
+        setTimeout(function() {
+            geocoder.geocode({'location': latlng}, function(results, status) {
+                if(status === 'OK') {
+                    if (results[0]) {
+                        return results.formatted_address
+                    }
+                } else if(status === 'OVER_QUERY_LIMIT') {
+                    console.log(userData, status)
+                    return null
+                }
+            })
+        }, delay)
+}
+
+function populateAutocomplete() {
+    let searchField = document.getElementById('google-autocomplete')
+    let place = searchField.autoComplete.getPlace()
+    let googleMap = document.getElementById('google-map').mapObject
+    let marker = new google.maps.Marker({
+        position: place.geometry.location,
+        map: googleMap
+    })
+}
+
+function googleAutocomplete() {
+    let searchField = document.getElementById('google-autocomplete')
+    searchField.autoComplete = new google.maps.places.Autocomplete(searchField)
+    let button = document.getElementById('google-search-button')
+    button.onclick = function () {
+        let delay = 2000
+        for (entry of validData) {
+            delay += 2000
+            let address = reverseLookup(entry, delay)
+            console.log(address)
+        }
+    }
+    searchField.autoComplete.addListener('place_changed', populateAutocomplete)
 }
