@@ -75,10 +75,7 @@ function populateGoogle(userData, map) {
     }
     marker.addListener('click', function () {
         // Emulates leaflet.js behavior of one open popup at a time
-        while(googleInfoWindows.length > 0) {
-            let infoWindow = googleInfoWindows.pop()
-            infoWindow.popup.close(map, infoWindow.marker)
-        }
+        clearGoogleInfoWindows()
         popup.open(map, marker)
         googleInfoWindows.push({popup: popup, marker: marker})
     })

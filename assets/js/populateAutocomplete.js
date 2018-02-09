@@ -18,17 +18,28 @@ function populateAutocomplete() {
         })
         marker.addListener('click', function () {
         // Emulates leaflet.js behavior of one open popup at a time
-        while(googleInfoWindows.length > 0) {
-            let infoWindow = googleInfoWindows.pop()
-            infoWindow.popup.close(googleMap, infoWindow.marker)
-        }
-        popup.open(googleMap, marker)
-        googleInfoWindows.push({popup: popup, marker: marker})
+            clearGoogleInfoWindows()
+            popup.open(googleMap, marker)
+            googleInfoWindows.push({popup: popup, marker: marker})
     })
         autoCompleteMarkers.push(marker)
     }
 
 }
+
+
+function clearGoogleInfoWindows() {
+    /*
+    Function that emulates LeafletJS info window toggling.
+    Every new infoWindow you click on closes any prior open ones.
+     */
+    let googleMap = document.getElementById('google-map').mapObject
+    while(googleInfoWindows.length > 0) {
+        let infoWindow = googleInfoWindows.pop()
+        infoWindow.popup.close(document.getElementById('google-map').mapObject, infoWindow.marker)
+    }
+}
+
 
 function googleAutocomplete() {
     /*
@@ -43,12 +54,8 @@ function googleAutocomplete() {
         searchField.value = null
         for(let marker of autoCompleteMarkers) {
             marker.setMap(null)
-
         }
-        while(googleInfoWindows.length > 0) {
-            let infoWindow = googleInfoWindows.pop()
-            infoWindow.popup.close(document.getElementById('google-map').mapObject, infoWindow.marker)
-        }
+        clearGoogleInfoWindows()
         for(let marker of googleMarkers) {
             marker.setVisible(true)
         }
