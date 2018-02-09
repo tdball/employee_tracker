@@ -5,7 +5,11 @@ from functools import lru_cache
 import fiona
 from shapely.geometry import Point, asShape
 from flask import Flask, request
+from flask_cors import CORS
+
+
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/api/in-water/', methods=['GET'])
@@ -29,7 +33,7 @@ def in_water(lat: float, lon: float) -> bool:
     :param lon: float
     :return: bool
     """
-    path = os.path.abspath('water-polygons/water_polygons.shp')
+    path = os.path.abspath('water_polygons.shp')
     with fiona.open(path) as fiona_collection:
         point = Point(lon, lat)
         # here we filter to only scan results near the point in question.
