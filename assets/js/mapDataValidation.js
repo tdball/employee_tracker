@@ -18,7 +18,7 @@ function validCoordinate(coordinateObject) {
     if(coordinateObject.longitude > 180 || coordinateObject.longitude < -180){
         return false
     }
-    return fetch(`https://tdball.net/api/in-water/?lat=${coordinateObject.latitude}&lng=${coordinateObject.longitude}`)
+    return fetch(`https://isthiswater.info/api/?lat=${coordinateObject.latitude}&lng=${coordinateObject.longitude}`)
         .then((response) => response.json())
         .then((data) => (!data.inWater))
 }
