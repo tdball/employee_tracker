@@ -7,6 +7,7 @@ function populateAutocomplete() {
     for(let marker of googleMarkers){
         marker.setVisible(false)
     }
+    clearGoogleInfoWindows()
     let searchField = document.getElementById('google-autocomplete')
     let place = searchField.autoComplete.getPlace()
     let googleMap = document.getElementById('google-map').mapObject
@@ -52,10 +53,10 @@ function googleAutocomplete() {
     let clearButton = document.getElementById('google-search-button')
     clearButton.onclick = function () {
         searchField.value = null
+        clearGoogleInfoWindows()
         for(let marker of autoCompleteMarkers) {
             marker.setMap(null)
         }
-        clearGoogleInfoWindows()
         for(let marker of googleMarkers) {
             marker.setVisible(true)
         }
