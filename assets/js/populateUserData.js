@@ -1,24 +1,21 @@
 const defaultZoom = 8
 const defaultLat = 36
-const defaultLng = 97
+const defaultLng = -96
 const unavailableName = 'Name N/A'
 
 function initGoogle(id) {
     /*
     param: id (string)
     returns: map (google.maps.Map)
-    Creates a map using Google's JS Map API and the `id` parameter. Defaults to the first entry in userData
-    or the defined `defaultLat`, `defaultLng`, and `defaultZoom`.
+    Creates a map using Google's JS Map API and the `id` parameter.
      */
 
-    if(userData[0]) {
-        let map = new google.maps.Map(document.getElementById(id), {
-            center: {lat: userData[0].latitude || defaultLat , lng: userData[0].longitude || defaultLng},
-            zoom: defaultZoom
-        })
-        attachMapData(id, map)
-        return map
-    }
+    let map = new google.maps.Map(document.getElementById(id), {
+        center: {lat: defaultLat , lng:  defaultLng},
+        zoom: defaultZoom
+    })
+    attachMapData(id, map)
+    return map
 }
 
 
@@ -26,25 +23,22 @@ function initLeaflet(id) {
     /*
     param: id (string)
     returns: map (L.map)
-    Creates a map using Leaflet's JS Map API and the `id` parameter. Defaults to the first entry in userData
-    or the defined `defaultLat`, `defaultLng`, and `defaultZoom`.
+    Creates a map using Leaflet's JS Map API and the `id` parameter.
 
     Tiles hosted by mapbox, sourced from Open Street Maps
      */
-    if(userData[0]){
-        let map = L.map(id, {
-            center: [userData[0].latitude || defaultLat, userData[0].longitude || defaultLng],
-            zoom: defaultZoom
-        })
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-            maxZoom: 18,
-            id: 'mapbox.streets',
-            accessToken: 'pk.eyJ1IjoidGRiYWxsIiwiYSI6ImNqZGQ2ZXN3cTBveTAzM3M0Y2hjNGdicWYifQ.8ZyvzI_lpo_YINCzf0KKrg'
-        }).addTo(map);
-        attachMapData(id, map)
-        return map
-    }
+    let map = L.map(id, {
+        center: [defaultLat, defaultLng],
+        zoom: defaultZoom
+    })
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox.streets',
+        accessToken: 'pk.eyJ1IjoidGRiYWxsIiwiYSI6ImNqZGQ2ZXN3cTBveTAzM3M0Y2hjNGdicWYifQ.8ZyvzI_lpo_YINCzf0KKrg'
+    }).addTo(map);
+    attachMapData(id, map)
+    return map
 }
 
 
@@ -156,6 +150,9 @@ function googleAutocomplete() {
         let delay = 2000
         for (entry of validData) {
             delay += 2000
+            // Potential oversight, may have an issue with multiple clients
+            // May need to redesign to recursively lookup upon failure.
+            // May also just misunderstand the goals laid out in the PDF
             reverseLookup(entry, delay).then(function(resolve) {
                 console.log(resolve)
             }).catch(function(reject) {
