@@ -13,17 +13,27 @@ CORS(app)
 
 
 @app.route('/api/in-water/', methods=['GET'])
-def expose_api():
+def expose_in_water():
+    """
+    small Flask endpoint, returns JSON to function as a very basic API
+    verifies that the user data has been submitted, otherwise returns
+    an invalidData flag.
+    :return: JSON
+    """
     if request.method == 'GET':
         latitude = request.args.get('latitude')
         longitude = request.args.get('longitude')
         if latitude and longitude:
             return json.dumps({"inWater": in_water(float(latitude), float(longitude))})
         else:
-            return json.dumps({"inWater": None})
+            return json.dumps({"invalidData": "Please provide both `latitude` and `longitude`"})
 
 @app.route('/api/in-water/cache', methods=['GET'])
 def cache():
+    """
+    Implemented to track caching functionality built into in_water function. Optional
+    :return: JSON
+    """
     if request.method == 'GET':
         cache_info = in_water.cache_info()
         return json.dumps({
@@ -40,6 +50,10 @@ def in_water(lat: float, lon: float) -> bool:
     Simple function to parse a shapefile from OpenStreet Maps.
     Returns a boolean signifying a location is or is not over
     water.
+
+    LRU Caching provided via functools.lru_cache. Uses memoization
+    to cache recently scanned results and provide large performance gains.
+
     :param lat: float
     :param lon: float
     :return: bool
